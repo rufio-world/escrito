@@ -22,6 +22,9 @@ class NoteEditorViewModel(
 
     private val noteId: Long? = savedStateHandle["noteId"]
 
+    /** True when editing an existing note (noteId provided via navigation). */
+    val isExistingNote: Boolean get() = noteId != null
+
     private val _title = MutableStateFlow("")
     val title: StateFlow<String> = _title
 
@@ -71,6 +74,22 @@ class NoteEditorViewModel(
             )
             val savedId = repository.save(note)
             onSaved(savedId)
+        }
+    }
+
+    fun delete(onDeleted: () -> Unit) {
+        // Only attempt delete when we have an existing note id.
+        val id = noteId ?: return
+        viewModelScope.launch {
+            repository.delete(
+                Note(
+                    id = id,
+                    title = _title.value,
+                    body = _body.value,
+                    backgroundColor = _color.value.key,
+                )
+            )
+            onDeleted()
         }
     }
 }

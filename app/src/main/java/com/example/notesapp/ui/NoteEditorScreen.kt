@@ -20,6 +20,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.icons.Icons
 import androidx.compose.material3.icons.filled.ArrowBack
 import androidx.compose.material3.icons.filled.Check
+import androidx.compose.material3.icons.filled.Delete
 import androidx.compose.material3.icons.filled.FormatListBulleted
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,6 +40,7 @@ fun NoteEditorScreen(
     val title by viewModel.title.collectAsStateWithLifecycle()
     val body by viewModel.body.collectAsStateWithLifecycle()
     val color by viewModel.color.collectAsStateWithLifecycle()
+    val isExisting = viewModel.isExistingNote
 
     Scaffold(
         topBar = {
@@ -50,6 +52,13 @@ fun NoteEditorScreen(
                     }
                 },
                 actions = {
+                    if (isExisting) {
+                        IconButton(onClick = {
+                            viewModel.delete { onBack() }
+                        }) {
+                            Icon(Icons.Filled.Delete, contentDescription = "Delete note")
+                        }
+                    }
                     IconButton(onClick = {
                         viewModel.save { onBack() }
                     }) {
