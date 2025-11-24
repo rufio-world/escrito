@@ -32,8 +32,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.notesapp.data.Note
 import com.example.notesapp.data.NoteColor
-import com.example.notesapp.data.NoteEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -88,8 +88,8 @@ private fun EmptyState(padding: PaddingValues) {
 }
 
 @Composable
-private fun NoteItem(note: NoteEntity, onOpen: () -> Unit, onDelete: () -> Unit) {
-    val color = NoteColor.fromHex(note.colorHex).displayColor
+private fun NoteItem(note: Note, onOpen: () -> Unit, onDelete: () -> Unit) {
+    val color = NoteColor.fromKey(note.backgroundColor).displayColor
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -104,7 +104,7 @@ private fun NoteItem(note: NoteEntity, onOpen: () -> Unit, onDelete: () -> Unit)
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = note.content,
+                text = note.body,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,

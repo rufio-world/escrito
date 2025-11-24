@@ -2,11 +2,10 @@ package com.example.notesapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.notesapp.data.NoteEntity
+import com.example.notesapp.data.Note
 import com.example.notesapp.data.NoteRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -17,15 +16,14 @@ import kotlinx.coroutines.launch
  */
 class NotesViewModel(private val repository: NoteRepository) : ViewModel() {
 
-    val notes: StateFlow<List<NoteEntity>> = repository.notes
-        .map { items -> items.sortedByDescending { it.id } }
+    val notes: StateFlow<List<Note>> = repository.notes
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = emptyList()
         )
 
-    fun deleteNote(note: NoteEntity) {
+    fun deleteNote(note: Note) {
         viewModelScope.launch { repository.delete(note) }
     }
 }

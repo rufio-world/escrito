@@ -3,17 +3,17 @@ package com.example.notesapp.data
 import androidx.compose.ui.graphics.Color
 
 /**
- * Fixed palette used by the app. Storing the hex string in the database keeps
- * the Room layer free from Compose primitives.
+ * Fixed palette used by the app. We store only a string key in the database
+ * (e.g. "YELLOW") and translate it to an actual Compose [Color] in the UI.
  */
-enum class NoteColor(val hex: String, val displayColor: Color) {
-    Yellow("#FFF59D", Color(0xFFFFF59D)),
-    Green("#C8E6C9", Color(0xFFC8E6C9)),
-    White("#FFFFFF", Color(0xFFFFFFFF)),
-    LightBlue("#B3E5FC", Color(0xFFB3E5FC)),
-    Pink("#F8BBD0", Color(0xFFF8BBD0));
+enum class NoteColor(val key: String, val displayColor: Color) {
+    Yellow("YELLOW", Color(0xFFFFF59D)),
+    Green("GREEN", Color(0xFFC8E6C9)),
+    White("WHITE", Color(0xFFFFFFFF)),
+    LightBlue("LIGHT_BLUE", Color(0xFFB3E5FC)),
+    Pink("PINK", Color(0xFFF8BBD0));
 
     companion object {
-        fun fromHex(hex: String): NoteColor = entries.find { it.hex == hex } ?: White
+        fun fromKey(key: String): NoteColor = entries.find { it.key == key } ?: White
     }
 }
