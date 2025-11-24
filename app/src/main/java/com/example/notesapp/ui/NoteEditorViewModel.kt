@@ -63,7 +63,7 @@ class NoteEditorViewModel(
         _body.value = if (_body.value.isEmpty()) "• " else _body.value + "\n• "
     }
 
-    fun save(onSaved: (Long) -> Unit) {
+    fun save(onSaved: () -> Unit) {
         viewModelScope.launch {
             val note = Note(
                 id = noteId ?: 0L,
@@ -71,15 +71,15 @@ class NoteEditorViewModel(
                 body = _body.value,
                 backgroundColor = _color.value.key,
             )
-            val savedId = repository.save(note)
-            onSaved(savedId)
+            repository.upsertNote(note)
+            onSaved()
         }
     }
 
     fun delete(onDeleted: () -> Unit) {
         val id = noteId ?: return
         viewModelScope.launch {
-            repository.delete(
+            repository.deleteNote(
                 Note(
                     id = id,
                     title = _title.value,

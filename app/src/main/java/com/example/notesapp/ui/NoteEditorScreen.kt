@@ -37,7 +37,7 @@ import com.example.notesapp.data.NoteColor
 fun NoteEditorScreen(
     viewModel: NoteEditorViewModel,
     onBack: () -> Unit,
-    onSaved: (Long) -> Unit,
+    onSaved: () -> Unit,
 ) {
     val title by viewModel.title.collectAsStateWithLifecycle()
     val body by viewModel.body.collectAsStateWithLifecycle()

@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
  */
 class NotesViewModel(private val repository: NoteRepository) : ViewModel() {
 
-    val notes: StateFlow<List<Note>> = repository.notes
+    val notes: StateFlow<List<Note>> = repository.getAllNotes()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
@@ -24,6 +24,6 @@ class NotesViewModel(private val repository: NoteRepository) : ViewModel() {
         )
 
     fun deleteNote(note: Note) {
-        viewModelScope.launch { repository.delete(note) }
+        viewModelScope.launch { repository.deleteNote(note) }
     }
 }
