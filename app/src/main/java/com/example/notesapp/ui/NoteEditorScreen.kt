@@ -26,6 +26,7 @@ import androidx.compose.material3.icons.filled.Check
 import androidx.compose.material3.icons.filled.Delete
 import androidx.compose.material3.icons.filled.FormatListBulleted
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -35,14 +36,25 @@ import com.example.notesapp.data.NoteColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
-    viewModel: NoteEditorViewModel,
+    viewModel: NoteViewModel,
+    noteId: Long?,
     onBack: () -> Unit,
     onSaved: () -> Unit,
 ) {
-    val title by viewModel.title.collectAsStateWithLifecycle()
-    val body by viewModel.body.collectAsStateWithLifecycle()
-    val color by viewModel.color.collectAsStateWithLifecycle()
-    val isExisting = viewModel.isExistingNote
+    val editableNote by viewModel.editableNote.collectAsStateWithLifecycle()
+    val title = editableNote.title
+    val body = editableNote.body
+    val color = editableNote.backgroundColor
+    val isExisting = editableNote.id != null
+
+    // Load or seed the editor state when the navigation argument changes.
+    LaunchedEffect(noteId) {
+        if (noteId != null) {
+            viewModel.loadNote(noteId)
+        } else {
+            viewModel.createNewNote()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -55,11 +67,11 @@ fun NoteEditorScreen(
                 },
                 actions = {
                     if (isExisting) {
-                        IconButton(onClick = { viewModel.delete(onBack) }) {
+                        IconButton(onClick = { viewModel.deleteCurrentNote(onBack) }) {
                             Icon(Icons.Filled.Delete, contentDescription = "Delete note")
                         }
                     }
-                    IconButton(onClick = { viewModel.save(onSaved) }) {
+                    IconButton(onClick = { viewModel.saveNote(onSaved) }) {
                         Icon(Icons.Filled.Check, contentDescription = "Save")
                     }
                 }
@@ -87,7 +99,7 @@ fun NoteEditorScreen(
                     .fillMaxWidth()
                     .height(220.dp),
                 label = { Text("Body") },
-                supportingText = { Text("Use the bullet button to quickly add • points.") },
+                supportingText = { Text("Use the bullet button to quickly add bullet points.") },
                 trailingIcon = {
                     IconButton(onClick = viewModel::addBulletPoint) {
                         Icon(Icons.Filled.FormatListBulleted, contentDescription = "Insert bullet")
@@ -96,9 +108,9 @@ fun NoteEditorScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text("Background color", style = MaterialTheme.typography.titleSmall)
-            ColorPickerRow(selected = color, onSelected = viewModel::updateColor)
+            ColorPickerRow(selected = color, onSelected = viewModel::updateBackgroundColor)
             Spacer(modifier = Modifier.height(24.dp))
-            Button(onClick = { viewModel.save(onSaved) }, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = { viewModel.saveNote(onSaved) }, modifier = Modifier.fillMaxWidth()) {
                 Text("Save note")
             }
         }

@@ -38,7 +38,7 @@ import com.example.notesapp.data.NoteColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteListScreen(
-    viewModel: NotesViewModel,
+    viewModel: NoteViewModel,
     onAdd: () -> Unit,
     onOpen: (Long) -> Unit,
 ) {
@@ -47,7 +47,12 @@ fun NoteListScreen(
     Scaffold(
         topBar = { TopAppBar(title = { Text("My Notes") }) },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAdd) {
+            FloatingActionButton(
+                onClick = {
+                    viewModel.createNewNote()
+                    onAdd()
+                }
+            ) {
                 Icon(Icons.Filled.Add, contentDescription = "Add note")
             }
         }
@@ -63,7 +68,10 @@ fun NoteListScreen(
                 items(notes, key = { it.id }) { note ->
                     NoteItem(
                         note = note,
-                        onOpen = { onOpen(note.id) },
+                        onOpen = {
+                            viewModel.loadNote(note.id)
+                            onOpen(note.id)
+                        },
                         onDelete = { viewModel.deleteNote(note) }
                     )
                 }
