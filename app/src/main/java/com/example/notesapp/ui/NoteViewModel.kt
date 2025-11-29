@@ -83,7 +83,7 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel() {
                 id = state.id ?: 0L,
                 title = state.title.ifBlank { "Untitled" },
                 body = state.body,
-                backgroundColor = state.backgroundColor.key
+                backgroundColor = state.backgroundColor.key // Persist the stable key; UI converts it back to Color.
             )
             repository.upsertNote(note)
             onSaved()

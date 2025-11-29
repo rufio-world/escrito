@@ -123,7 +123,7 @@ private fun ColorPickerRow(selected: NoteColor, onSelected: (NoteColor) -> Unit)
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        NoteColor.values().forEach { noteColor ->
+        NoteColor.allColors.forEach { noteColor ->
             ColorChip(color = noteColor, isSelected = noteColor == selected) {
                 onSelected(noteColor)
             }

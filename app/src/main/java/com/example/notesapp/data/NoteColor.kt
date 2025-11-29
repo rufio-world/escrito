@@ -3,8 +3,12 @@ package com.example.notesapp.data
 import androidx.compose.ui.graphics.Color
 
 /**
- * Fixed palette used by the app. We store only a string key in the database
- * (e.g. "YELLOW") and translate it to an actual Compose [Color] in the UI.
+ * Fixed palette used by the app.
+ *
+ * Only the [key] is persisted in Room (see [Note.backgroundColor] /
+ * [NoteEntity.backgroundColor]); Compose-specific [Color] values stay in the UI
+ * layer. When rendering notes we translate the stored key back into a Compose
+ * [Color] via [colorForKey].
  */
 enum class NoteColor(val key: String, val displayColor: Color) {
     Yellow("YELLOW", Color(0xFFFFF59D)),
@@ -14,6 +18,13 @@ enum class NoteColor(val key: String, val displayColor: Color) {
     Pink("PINK", Color(0xFFF8BBD0));
 
     companion object {
+        /** Palette for UI pickers (stable order for chips/rows). */
+        val allColors: List<NoteColor> = entries
+
+        /** Convert a stored database key into the palette entry (defaults to white). */
         fun fromKey(key: String): NoteColor = entries.find { it.key == key } ?: White
+
+        /** Shortcut to get the actual Compose [Color] from a persisted key. */
+        fun colorForKey(key: String): Color = fromKey(key).displayColor
     }
 }

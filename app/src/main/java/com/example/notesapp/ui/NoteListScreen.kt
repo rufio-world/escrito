@@ -97,7 +97,7 @@ private fun EmptyState(padding: PaddingValues) {
 
 @Composable
 private fun NoteItem(note: Note, onOpen: () -> Unit, onDelete: () -> Unit) {
-    val color = NoteColor.fromKey(note.backgroundColor).displayColor
+    val color = NoteColor.colorForKey(note.backgroundColor)
     Card(
         modifier = Modifier
             .fillMaxWidth()
