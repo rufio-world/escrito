@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -99,13 +100,13 @@ fun NoteEditorScreen(
                     .fillMaxWidth()
                     .height(220.dp),
                 label = { Text("Body") },
-                supportingText = { Text("Use the bullet button to quickly add bullet points.") },
-                trailingIcon = {
-                    IconButton(onClick = viewModel::addBulletPoint) {
-                        Icon(Icons.Filled.FormatListBulleted, contentDescription = "Insert bullet")
-                    }
-                }
+                supportingText = { Text("Use Add bullet to append a \u2022 at the end of the note.") },
             )
+            TextButton(onClick = viewModel::addBulletPoint) {
+                Icon(Icons.Filled.FormatListBulleted, contentDescription = null)
+                Spacer(modifier = Modifier.width(6.dp))
+                Text("Add bullet")
+            }
             Spacer(modifier = Modifier.height(12.dp))
             Text("Background color", style = MaterialTheme.typography.titleSmall)
             ColorPickerRow(selected = color, onSelected = viewModel::updateBackgroundColor)

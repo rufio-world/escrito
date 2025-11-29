@@ -70,9 +70,10 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel() {
 
     /** Convenience helper for the bullet toolbar action. */
     fun addBulletPoint() {
-        val currentBody = _editableNote.value.body
-        val newBody = if (currentBody.isEmpty()) "- " else "$currentBody\n- "
-        _editableNote.value = _editableNote.value.copy(body = newBody)
+        // Simple append-only behavior: bullets are added at the end or after a newline.
+        _editableNote.value = _editableNote.value.copy(
+            body = addBulletToBody(_editableNote.value.body)
+        )
     }
 
     /** Insert or update the current note, then inform the UI. */
