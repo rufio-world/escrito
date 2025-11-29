@@ -1,9 +1,14 @@
 package com.example.notesapp.navigation
 
 sealed class NavRoutes(val route: String) {
-    data object Notes : NavRoutes("notes")
-    data object Edit : NavRoutes("edit?noteId={noteId}") {
+    data object Notes : NavRoutes("notes_list")
+    data object Edit : NavRoutes("note_editor/{noteId}") {
         const val NOTE_ID = "noteId"
-        fun createRoute(id: Long?) = if (id != null) "edit?noteId=$id" else "edit"
+        fun createRoute(id: Long?): String = if (id != null) {
+            "note_editor/$id"
+        } else {
+            // Use -1 to represent "new note" (matches default argument).
+            "note_editor/-1"
+        }
     }
 }

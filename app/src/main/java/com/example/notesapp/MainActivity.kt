@@ -21,6 +21,7 @@ import com.example.notesapp.ui.theme.NotesTheme
 
 class MainActivity : ComponentActivity() {
 
+    // Build repository + ViewModel once and share across destinations.
     private val noteViewModel: NoteViewModel by viewModels {
         val repository = (application as NotesApplication).repository
         NoteViewModelFactory(repository)
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun NotesApp(noteViewModel: NoteViewModel) {
+    // Single NavHost for the two screens.
     val navController = rememberNavController()
 
     NotesTheme {
@@ -42,6 +44,7 @@ private fun NotesApp(noteViewModel: NoteViewModel) {
                 navController = navController,
                 startDestination = NavRoutes.Notes.route
             ) {
+                // List -> navigate to editor (existing or new).
                 composable(NavRoutes.Notes.route) {
                     NoteListScreen(
                         viewModel = noteViewModel,
@@ -50,6 +53,7 @@ private fun NotesApp(noteViewModel: NoteViewModel) {
                     )
                 }
 
+                // Editor -> handles both new (-1) and existing ids.
                 composable(
                     route = NavRoutes.Edit.route,
                     arguments = listOf(
