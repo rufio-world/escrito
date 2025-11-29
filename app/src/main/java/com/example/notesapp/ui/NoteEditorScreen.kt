@@ -35,6 +35,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.notesapp.data.NoteColor
 
 @OptIn(ExperimentalMaterial3Api::class)
+/**
+ * Editor screen for creating/updating notes. It consumes the shared
+ * [NoteViewModel] state, showing text fields, color chips, and actions that
+ * drive ViewModel events. UI is intentionally simple: bullets are appended at
+ * the end (no cursor tracking) and colors come from the fixed palette.
+ */
 @Composable
 fun NoteEditorScreen(
     viewModel: NoteViewModel,
@@ -102,6 +108,7 @@ fun NoteEditorScreen(
                 label = { Text("Body") },
                 supportingText = { Text("Use Add bullet to append a \u2022 at the end of the note.") },
             )
+            // Simple append-only bullet action; good enough without cursor tracking.
             TextButton(onClick = viewModel::addBulletPoint) {
                 Icon(Icons.Filled.FormatListBulleted, contentDescription = null)
                 Spacer(modifier = Modifier.width(6.dp))
@@ -119,7 +126,11 @@ fun NoteEditorScreen(
 }
 
 @Composable
-private fun ColorPickerRow(selected: NoteColor, onSelected: (NoteColor) -> Unit) {
+/**
+ * Horizontal palette selector backed by the fixed [NoteColor] options.
+ * Keeps ordering stable for consistent visual positions.
+ */
+fun ColorPickerRow(selected: NoteColor, onSelected: (NoteColor) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp)

@@ -36,6 +36,12 @@ import com.example.notesapp.data.Note
 import com.example.notesapp.data.NoteColor
 
 @OptIn(ExperimentalMaterial3Api::class)
+/**
+ * Lists all notes. Collects notes from the shared [NoteViewModel] and renders
+ * each as a card tinted with its stored background color. Tapping a card
+ * triggers navigation to the editor with that note id; the FAB creates a new
+ * blank note and opens the editor.
+ */
 @Composable
 fun NoteListScreen(
     viewModel: NoteViewModel,
@@ -60,6 +66,7 @@ fun NoteListScreen(
         if (notes.isEmpty()) {
             EmptyState(padding)
         } else {
+            // Render note cards with stable keys for smooth animations.
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(16.dp),
@@ -97,6 +104,7 @@ private fun EmptyState(padding: PaddingValues) {
 
 @Composable
 private fun NoteItem(note: Note, onOpen: () -> Unit, onDelete: () -> Unit) {
+    // UI uses the persisted key to derive a Compose Color.
     val color = NoteColor.colorForKey(note.backgroundColor)
     Card(
         modifier = Modifier
