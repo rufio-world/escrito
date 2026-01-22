@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "680px",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "name": "Base", "slug": "base", "color": "#ffffff" },
+        { "name": "Text", "slug": "text", "color": "#0f172a" },
+        { "name": "Primary", "slug": "primary", "color": "#2563eb" },
+        { "name": "Accent", "slug": "accent", "color": "#f97316" },
+        { "name": "Muted", "slug": "muted", "color": "#e2e8f0" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "%", "vw", "vh"],
+      "spacingSizes": [
+        { "name": "xs", "slug": "xs", "size": "0.5rem" },
+        { "name": "sm", "slug": "sm", "size": "1rem" },
+        { "name": "md", "slug": "md", "size": "1.5rem" },
+        { "name": "lg", "slug": "lg", "size": "2.5rem" },
+        { "name": "xl", "slug": "xl", "size": "4rem" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "name": "Inter",
+          "slug": "inter",
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        }
+      ]
+    },
+    "custom": {
+      "builder": {
+        "breakpoints": {
+          "mobile": "480px",
+          "tablet": "768px",
+          "desktop": "1024px"
+        }
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--base)",
+      "text": "var(--wp--preset--color--text)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--inter)"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--primary)"
+        }
+      }
+    },
+    "blocks": {
+      "core/button": {
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "var(--wp--preset--color--base)"
+        }
+      }
+    }
+  }
+}
