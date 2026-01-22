@@ -15,8 +15,9 @@ This repository includes a WordPress theme + companion plugin scaffold that alig
 
 ## Block Registration Strategy
 
-- Each block lives in `build/<block>/block.json` with metadata.
+- Each block lives in `blocks/<block>/block.json` with metadata.
 - The plugin registers block types on `init`, wiring script and editor styles.
+- Front-end block styles are registered separately to avoid editor-only CSS shipping to the site.
 - Blocks are designed to be _layout-first_ and nested with `InnerBlocks` to keep markup minimal.
 
 ## Visual Builder Foundations

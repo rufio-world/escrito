@@ -16,7 +16,7 @@ const ESCRITO_BUILDER_PLUGIN_VERSION = '0.1.0';
 
 function escrito_builder_register_block_assets(): void
 {
-    $asset_path = plugin_dir_path(__FILE__) . 'build/index.asset.php';
+    $asset_path = plugin_dir_path(__FILE__) . 'assets/editor.asset.php';
     $dependencies = [];
     $version = ESCRITO_BUILDER_PLUGIN_VERSION;
 
@@ -28,7 +28,7 @@ function escrito_builder_register_block_assets(): void
 
     wp_register_script(
         'escrito-builder-blocks',
-        plugins_url('build/index.js', __FILE__),
+        plugins_url('assets/editor.js', __FILE__),
         $dependencies,
         $version,
         true
@@ -36,14 +36,22 @@ function escrito_builder_register_block_assets(): void
 
     wp_register_style(
         'escrito-builder-editor',
-        plugins_url('build/editor.css', __FILE__),
+        plugins_url('assets/editor.css', __FILE__),
         [],
         $version
     );
 
-    register_block_type(__DIR__ . '/build/container', [
+    wp_register_style(
+        'escrito-builder-frontend',
+        plugins_url('assets/style.css', __FILE__),
+        [],
+        $version
+    );
+
+    register_block_type(__DIR__ . '/blocks/container', [
         'editor_script' => 'escrito-builder-blocks',
         'editor_style' => 'escrito-builder-editor',
+        'style' => 'escrito-builder-frontend',
     ]);
 }
 add_action('init', 'escrito_builder_register_block_assets');

@@ -1,0 +1,31 @@
+.escrito-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--md);
+}
+
+.escrito-container.has-gap-none {
+  gap: 0;
+}
+
+.escrito-container.has-gap-sm {
+  gap: var(--wp--preset--spacing--sm);
+}
+
+.escrito-container.has-gap-md {
+  gap: var(--wp--preset--spacing--md);
+}
+
+.escrito-container.has-gap-lg {
+  gap: var(--wp--preset--spacing--lg);
+}
+
+.escrito-container.is-stack-on-mobile {
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  .escrito-container.is-stack-on-mobile {
+    flex-direction: column;
+  }
+}
