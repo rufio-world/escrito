@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "escrito/carousel",
+  "title": "Escrito Carousel",
+  "category": "widgets",
+  "icon": "images-alt2",
+  "attributes": {
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "interval": {
+      "type": "number",
+      "default": 5000
+    }
+  },
+  "editorScript": "escrito-builder-blocks",
+  "editorStyle": "escrito-builder-editor",
+  "style": "escrito-builder-frontend"
+}

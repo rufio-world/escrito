@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "escrito/tab",
+  "title": "Tab",
+  "category": "widgets",
+  "icon": "index-card",
+  "parent": ["escrito/tabs"],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Tab title"
+    }
+  },
+  "editorScript": "escrito-builder-blocks",
+  "editorStyle": "escrito-builder-editor",
+  "style": "escrito-builder-frontend"
+}

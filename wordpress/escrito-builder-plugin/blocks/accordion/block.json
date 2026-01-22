@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "escrito/accordion",
+  "title": "Escrito Accordion",
+  "category": "widgets",
+  "icon": "list-view",
+  "editorScript": "escrito-builder-blocks",
+  "editorStyle": "escrito-builder-editor",
+  "style": "escrito-builder-frontend"
+}

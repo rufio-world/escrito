@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "escrito/spacer",
+  "title": "Escrito Spacer",
+  "category": "layout",
+  "icon": "arrow-down-alt2",
+  "attributes": {
+    "height": {
+      "type": "string",
+      "default": "48px"
+    }
+  },
+  "editorScript": "escrito-builder-blocks",
+  "editorStyle": "escrito-builder-editor",
+  "style": "escrito-builder-frontend"
+}

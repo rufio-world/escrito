@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "escrito/column",
+  "title": "Escrito Column",
+  "category": "layout",
+  "icon": "editor-table",
+  "parent": ["escrito/columns"],
+  "supports": {
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  },
+  "editorScript": "escrito-builder-blocks",
+  "editorStyle": "escrito-builder-editor",
+  "style": "escrito-builder-frontend"
+}

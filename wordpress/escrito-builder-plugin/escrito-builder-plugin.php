@@ -48,10 +48,34 @@ function escrito_builder_register_block_assets(): void
         $version
     );
 
-    register_block_type(__DIR__ . '/blocks/container', [
+    $block_paths = [
+        'container',
+        'grid',
+        'columns',
+        'column',
+        'spacer',
+        'divider',
+        'tabs',
+        'tab',
+        'accordion',
+        'accordion-item',
+        'carousel',
+        'slide',
+    ];
+
+    foreach ($block_paths as $block_path) {
+        register_block_type(__DIR__ . '/blocks/' . $block_path, [
+            'editor_script' => 'escrito-builder-blocks',
+            'editor_style' => 'escrito-builder-editor',
+            'style' => 'escrito-builder-frontend',
+        ]);
+    }
+
+    register_block_type(__DIR__ . '/blocks/dynamic-text', [
         'editor_script' => 'escrito-builder-blocks',
         'editor_style' => 'escrito-builder-editor',
         'style' => 'escrito-builder-frontend',
+        'render_callback' => 'escrito_builder_render_dynamic_text',
     ]);
 }
 add_action('init', 'escrito_builder_register_block_assets');
@@ -72,3 +96,35 @@ function escrito_builder_register_editor_settings(): void
     ]);
 }
 add_action('init', 'escrito_builder_register_editor_settings');
+
+/**
+ * Render dynamic text from post context.
+ *
+ * @param array $attributes Block attributes.
+ * @param string $content Block content.
+ * @param WP_Block $block Block instance.
+ * @return string
+ */
+function escrito_builder_render_dynamic_text(array $attributes, string $content, WP_Block $block): string
+{
+    $source = $attributes['source'] ?? 'post_title';
+    $post_id = $block->context['postId'] ?? 0;
+
+    if (!$post_id) {
+        return '';
+    }
+
+    if ($source === 'post_meta') {
+        $meta_key = $attributes['metaKey'] ?? '';
+        if (!$meta_key) {
+            return '';
+        }
+        $meta_value = get_post_meta($post_id, $meta_key, true);
+        if (is_array($meta_value)) {
+            $meta_value = wp_json_encode($meta_value);
+        }
+        return esc_html((string) $meta_value);
+    }
+
+    return esc_html(get_the_title($post_id));
+}

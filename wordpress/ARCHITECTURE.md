@@ -25,6 +25,8 @@ This repository includes a WordPress theme + companion plugin scaffold that alig
 - The `escrito/container` block acts as the primary layout surface for flex-based design.
 - Builder settings live on block attributes (`builderSettings`) to allow responsive and device-specific metadata.
 - Responsive breakpoints are registered via `register_setting` so the editor can read defaults.
+- Additional layout primitives (grid, columns, spacer, divider) and interactive blocks (tabs, accordion, carousel) are registered in the companion plugin as native blocks.
+- Dynamic text blocks render post context or post meta via REST-powered previews in the editor and a PHP render callback on the front end.
 
 ## Extensibility
 
