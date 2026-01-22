@@ -1,0 +1,20 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+gradlePlugin {
+    plugins {
+        fakeAndroidApplication {
+            id = 'com.android.application'
+            implementationClass = 'com.escrito.buildlogic.FakeAndroidApplicationPlugin'
+        }
+        fakeKotlinAndroid {
+            id = 'org.jetbrains.kotlin.android'
+            implementationClass = 'com.escrito.buildlogic.FakeKotlinAndroidPlugin'
+        }
+        fakeKapt {
+            id = 'org.jetbrains.kotlin.kapt'
+            implementationClass = 'com.escrito.buildlogic.FakeKaptPlugin'
+        }
+    }
+}
