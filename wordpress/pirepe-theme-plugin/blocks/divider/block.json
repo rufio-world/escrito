@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/divider",
+  "title": "Pirepe Divider",
+  "category": "layout",
+  "icon": "minus",
+  "attributes": {
+    "thickness": {
+      "type": "number",
+      "default": 1
+    }
+  },
+  "supports": {
+    "color": {
+      "background": true
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

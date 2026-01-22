@@ -1,14 +1,14 @@
-# Escrito Builder Architecture
+# Pirepe Builder Architecture
 
 This repository includes a WordPress theme + companion plugin scaffold that aligns with Gutenberg and Full Site Editing (FSE). The goal is to provide a native-first visual builder foundation without external page builder dependencies.
 
 ## Theme vs Plugin
 
-- **Theme (`escrito-builder-theme`)**
+- **Theme (`pirepe-theme`)**
   - Owns presentation, templates, patterns, and global styles.
   - Defines design tokens and defaults in `theme.json`.
   - Ships FSE templates and reusable pattern sections.
-- **Companion Plugin (`escrito-builder-plugin`)**
+- **Companion Plugin (`pirepe-theme-plugin`)**
   - Owns custom blocks, editor extensions, and builder controls.
   - Registers block assets and editor settings (breakpoints, etc.).
   - Provides a location for future block variations, SlotFill UI, and editor data stores.
@@ -22,7 +22,7 @@ This repository includes a WordPress theme + companion plugin scaffold that alig
 
 ## Visual Builder Foundations
 
-- The `escrito/container` block acts as the primary layout surface for flex-based design.
+- The `pirepe/container` block acts as the primary layout surface for flex-based design.
 - Builder settings live on block attributes (`builderSettings`) to allow responsive and device-specific metadata.
 - Responsive breakpoints are registered via `register_setting` so the editor can read defaults.
 - Additional layout primitives (grid, columns, spacer, divider) and interactive blocks (tabs, accordion, carousel) are registered in the companion plugin as native blocks.

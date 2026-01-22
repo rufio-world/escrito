@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/tabs",
+  "title": "Pirepe Tabs",
+  "category": "widgets",
+  "icon": "index-card",
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

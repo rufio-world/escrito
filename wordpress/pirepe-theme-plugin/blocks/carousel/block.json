@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/carousel",
+  "title": "Pirepe Carousel",
+  "category": "widgets",
+  "icon": "images-alt2",
+  "attributes": {
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "interval": {
+      "type": "number",
+      "default": 5000
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

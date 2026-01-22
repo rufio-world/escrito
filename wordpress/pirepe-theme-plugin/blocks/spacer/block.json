@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/spacer",
+  "title": "Pirepe Spacer",
+  "category": "layout",
+  "icon": "arrow-down-alt2",
+  "attributes": {
+    "height": {
+      "type": "string",
+      "default": "48px"
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/column",
+  "title": "Pirepe Column",
+  "category": "layout",
+  "icon": "editor-table",
+  "parent": ["pirepe/columns"],
+  "supports": {
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

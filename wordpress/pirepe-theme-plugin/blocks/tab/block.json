@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/tab",
+  "title": "Tab",
+  "category": "widgets",
+  "icon": "index-card",
+  "parent": ["pirepe/tabs"],
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Tab title"
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

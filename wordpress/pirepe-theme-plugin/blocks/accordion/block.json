@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/accordion",
+  "title": "Pirepe Accordion",
+  "category": "widgets",
+  "icon": "list-view",
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

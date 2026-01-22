@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/container",
+  "title": "Pirepe Container",
+  "category": "layout",
+  "icon": "screenoptions",
+  "description": "A flex-based container with builder-focused controls.",
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  },
+  "attributes": {
+    "layout": {
+      "type": "object",
+      "default": {
+        "type": "flex",
+        "allowSizingOnChildren": true,
+        "justifyContent": "flex-start",
+        "flexWrap": "wrap"
+      }
+    },
+    "builderSettings": {
+      "type": "object",
+      "default": {
+        "stackOnMobile": true,
+        "gap": "md"
+      }
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

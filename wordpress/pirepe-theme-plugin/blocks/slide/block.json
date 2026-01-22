@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/slide",
+  "title": "Carousel Slide",
+  "category": "widgets",
+  "icon": "format-image",
+  "parent": ["pirepe/carousel"],
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

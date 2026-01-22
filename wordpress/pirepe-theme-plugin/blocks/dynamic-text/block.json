@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/dynamic-text",
+  "title": "Dynamic Text",
+  "category": "widgets",
+  "icon": "editor-code",
+  "attributes": {
+    "source": {
+      "type": "string",
+      "default": "post_title"
+    },
+    "metaKey": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "usesContext": ["postId", "postType"],
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}

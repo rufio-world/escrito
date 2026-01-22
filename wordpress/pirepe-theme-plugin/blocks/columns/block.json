@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pirepe/columns",
+  "title": "Pirepe Columns",
+  "category": "layout",
+  "icon": "columns",
+  "description": "A column set with responsive stacking.",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 2
+    },
+    "gap": {
+      "type": "string",
+      "default": "md"
+    },
+    "stackOnMobile": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": "pirepe-theme-blocks",
+  "editorStyle": "pirepe-theme-editor",
+  "style": "pirepe-theme-frontend"
+}
